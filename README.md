@@ -45,6 +45,14 @@ Default is deterministic hashing embeddings. To enable sentence-transformers:
 - Expose ports 3000 (dashboard) and 8000 (API)
 - Provide the `.env` values in Coolify environment variables
 
+## Stability Verification
+
+Run the automated verification routine after the stack is up:
+
+```bash
+docker compose exec api python -m app.scripts.verify
+```
+
 ## Project Structure
 
 - `api/` FastAPI backend

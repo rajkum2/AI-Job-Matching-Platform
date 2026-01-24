@@ -25,18 +25,14 @@ SEED_DIR = Path(__file__).resolve().parents[2] / "seeds"
 
 async def seed_data() -> Dict[str, int]:
     db = get_db()
-    await db.candidates.delete_many({})
-    await db.resumes.delete_many({})
-    await db.jobs.delete_many({})
-    await db.matches.delete_many({})
-
     counts = {}
     for name in ["candidates", "resumes", "jobs"]:
         path = SEED_DIR / f"{name}.json"
         with path.open("r", encoding="utf-8") as file:
             data = json.load(file)
         if data:
-            await db[name].insert_many(data)
+            for doc in data:
+                await db[name].update_one({"_id": doc["_id"]}, {"$set": doc}, upsert=True)
         counts[name] = len(data)
 
     await audit_repo.log_event("system", "seed", "pipeline", "seed", None, counts)

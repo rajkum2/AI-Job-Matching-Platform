@@ -13,7 +13,7 @@ _client: Optional[AsyncIOMotorClient] = None
 def get_client() -> AsyncIOMotorClient:
     global _client
     if _client is None:
-        _client = AsyncIOMotorClient(settings.mongo_uri)
+        _client = AsyncIOMotorClient(settings.mongodb_uri)
     return _client
 
 
@@ -23,7 +23,8 @@ def get_db():
 
 async def ensure_indexes() -> None:
     db = get_db()
-    await db.matches.create_index([("candidate_id", 1), ("job_id", 1), ("status", 1)])
+    await db.matches.create_index([("candidate_id", 1), ("job_id", 1)], unique=True)
+    await db.matches.create_index("status")
     await db.resumes.create_index("candidate_id")
     await db.jobs.create_index([("company", 1), ("title", 1)])
     await db.mappings_skill_aliases.create_index("alias", unique=True)

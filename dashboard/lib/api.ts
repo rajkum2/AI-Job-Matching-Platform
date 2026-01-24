@@ -1,4 +1,7 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+export const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  process.env.API_BASE_URL ||
+  "http://localhost:8000";
 
 export const getToken = (): string | null => {
   if (typeof window === "undefined") return null;
@@ -15,20 +18,28 @@ export const clearToken = () => {
   localStorage.removeItem("jobmatch_token");
 };
 
-export async function apiFetch(path: string, options: RequestInit = {}) {
+export async function apiFetch(path: string, options: RequestInit = {}, retries = 2): Promise<any> {
   const headers = new Headers(options.headers || {});
   headers.set("Content-Type", "application/json");
   const token = getToken();
   if (token) {
     headers.set("Authorization", `Bearer ${token}`);
   }
-  const response = await fetch(`${API_URL}${path}`, {
-    ...options,
-    headers,
-  });
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(text || response.statusText);
+  try {
+    const response = await fetch(`${API_URL}${path}`, {
+      ...options,
+      headers,
+    });
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(text || response.statusText);
+    }
+    return response.json();
+  } catch (error) {
+    if (retries > 0) {
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      return apiFetch(path, options, retries - 1);
+    }
+    throw error;
   }
-  return response.json();
 }

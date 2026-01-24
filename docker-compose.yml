@@ -8,6 +8,11 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand({ ping: 1 })"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   qdrant:
     image: qdrant/qdrant:v1.8.3
@@ -16,31 +21,37 @@ services:
       - "6333:6333"
     volumes:
       - qdrant_data:/qdrant/storage
+    healthcheck:
+      test: ["CMD", "sh", "-c", "curl -sf http://localhost:6333/collections || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   api:
     build:
       context: ./api
     container_name: jobmatch_api
     environment:
-      - MONGO_URI=mongodb://mongo:27017
+      - MONGODB_URI=mongodb://mongo:27017
       - MONGO_DB=jobmatch
-      - QDRANT_HOST=qdrant
-      - QDRANT_PORT=6333
+      - QDRANT_URL=http://qdrant:6333
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - ADMIN_TOKEN_SECRET=${ADMIN_TOKEN_SECRET}
       - EMBED_USE_SENTENCE_TRANSFORMERS=${EMBED_USE_SENTENCE_TRANSFORMERS}
     ports:
       - "8000:8000"
     depends_on:
-      - mongo
-      - qdrant
+      mongo:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
 
   dashboard:
     build:
       context: ./dashboard
     container_name: jobmatch_dashboard
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_API_URL=${API_BASE_URL:-http://localhost:8000}
     ports:
       - "3000:3000"
     depends_on:
