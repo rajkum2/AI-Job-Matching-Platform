@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: jobmatch_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  qdrant:
+    image: qdrant/qdrant:v1.8.3
+    container_name: jobmatch_qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  api:
+    build:
+      context: ./api
+    container_name: jobmatch_api
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+      - MONGO_DB=jobmatch
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_TOKEN_SECRET=${ADMIN_TOKEN_SECRET}
+      - EMBED_USE_SENTENCE_TRANSFORMERS=${EMBED_USE_SENTENCE_TRANSFORMERS}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+      - qdrant
+
+  dashboard:
+    build:
+      context: ./dashboard
+    container_name: jobmatch_dashboard
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  mongo_data:
+  qdrant_data:

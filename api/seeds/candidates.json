@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "cand_001",
+    "name": "Priya Desai",
+    "email": "priya.desai@example.com",
+    "created_at": "2026-01-24T09:00:00Z"
+  },
+  {
+    "_id": "cand_002",
+    "name": "Marcus Lee",
+    "email": "marcus.lee@example.com",
+    "created_at": "2026-01-24T09:05:00Z"
+  },
+  {
+    "_id": "cand_003",
+    "name": "Ava Thompson",
+    "email": "ava.thompson@example.com",
+    "created_at": "2026-01-24T09:10:00Z"
+  },
+  {
+    "_id": "cand_004",
+    "name": "Diego Ramirez",
+    "email": "diego.ramirez@example.com",
+    "created_at": "2026-01-24T09:15:00Z"
+  },
+  {
+    "_id": "cand_005",
+    "name": "Linh Nguyen",
+    "email": "linh.nguyen@example.com",
+    "created_at": "2026-01-24T09:20:00Z"
+  }
+]

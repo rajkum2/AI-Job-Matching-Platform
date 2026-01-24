@@ -1,0 +1,92 @@
+[
+  {
+    "_id": "job_001",
+    "company": "Nimbus Health",
+    "title": "Senior Backend Engineer",
+    "raw_text": "We are hiring a senior backend engineer to build Python APIs using FastAPI and Django. Skills: Python, PostgreSQL, MongoDB, Docker, Kubernetes, AWS. Domain: healthcare data pipelines.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:00:00Z"
+  },
+  {
+    "_id": "job_002",
+    "company": "Vertex Labs",
+    "title": "Machine Learning Engineer",
+    "raw_text": "ML engineer to develop NLP models and deploy services. Experience with PyTorch, FastAPI, ML pipelines, and GCP. SQL and Spark a plus.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:05:00Z"
+  },
+  {
+    "_id": "job_003",
+    "company": "Slate Commerce",
+    "title": "Frontend Engineer",
+    "raw_text": "Frontend engineer to build React and Next.js dashboards. TypeScript, GraphQL, and UI polish required.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:10:00Z"
+  },
+  {
+    "_id": "job_004",
+    "company": "Nova Infra",
+    "title": "Platform Engineer",
+    "raw_text": "Platform engineer to manage Kubernetes clusters, Docker, CI/CD, and AWS infrastructure. Experience with Redis and observability tools.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:15:00Z"
+  },
+  {
+    "_id": "job_005",
+    "company": "Atlas AI",
+    "title": "Data Scientist",
+    "raw_text": "Data scientist for ML experiments, feature engineering, and model evaluation. Python, SQL, Spark, ML and NLP experience required.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:20:00Z"
+  },
+  {
+    "_id": "job_006",
+    "company": "Pulse Finance",
+    "title": "Software Engineer (Mid)",
+    "raw_text": "Mid-level software engineer building Node and React applications with MongoDB. REST APIs, Docker, and AWS preferred.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:25:00Z"
+  },
+  {
+    "_id": "job_007",
+    "company": "Quasar Systems",
+    "title": "Backend Engineer",
+    "raw_text": "Backend engineer working on microservices with Python, FastAPI, PostgreSQL, and Redis. Familiarity with Kubernetes is a plus.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:30:00Z"
+  },
+  {
+    "_id": "job_008",
+    "company": "Orbit Search",
+    "title": "Search Engineer",
+    "raw_text": "Build semantic search using vector databases like Qdrant. Experience with Python, embeddings, and Docker. ML background helpful.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:35:00Z"
+  },
+  {
+    "_id": "job_009",
+    "company": "Sunrise Mobility",
+    "title": "Full Stack Engineer",
+    "raw_text": "Full stack engineer with React, Node, and Python. Work on SaaS products, MongoDB, and cloud deployments.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:40:00Z"
+  },
+  {
+    "_id": "job_010",
+    "company": "Lumen Data",
+    "title": "Data Engineer",
+    "raw_text": "Data engineer to build ETL pipelines with Airflow and Spark. Python, SQL, and AWS. Experience with data warehouses.",
+    "parsed_job": null,
+    "job_version": null,
+    "updated_at": "2026-01-24T10:45:00Z"
+  }
+]

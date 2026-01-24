@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "res_001",
+    "candidate_id": "cand_001",
+    "raw_text": "Priya Desai - Senior backend engineer with 6+ years building Python APIs. Experience with FastAPI, Django, PostgreSQL, MongoDB, Docker, Kubernetes (k8s), and AWS. Led migration to microservices and built data pipelines with Airflow.",
+    "parsed_profile": null,
+    "profile_version": null,
+    "updated_at": "2026-01-24T09:00:00Z"
+  },
+  {
+    "_id": "res_002",
+    "candidate_id": "cand_002",
+    "raw_text": "Marcus Lee - Data scientist focused on ML and NLP. Built PyTorch models, feature stores, and deployed ML services with FastAPI. Skills: Python, SQL, Spark, Airflow, GCP.",
+    "parsed_profile": null,
+    "profile_version": null,
+    "updated_at": "2026-01-24T09:05:00Z"
+  },
+  {
+    "_id": "res_003",
+    "candidate_id": "cand_003",
+    "raw_text": "Ava Thompson - Frontend engineer with React, Next.js, TypeScript, GraphQL, and design systems. Collaborated with backend teams and delivered dashboards. Interested in full-stack roles.",
+    "parsed_profile": null,
+    "profile_version": null,
+    "updated_at": "2026-01-24T09:10:00Z"
+  },
+  {
+    "_id": "res_004",
+    "candidate_id": "cand_004",
+    "raw_text": "Diego Ramirez - Platform engineer. Built infrastructure on AWS with Terraform, Kubernetes, Docker, and CI/CD. Experience supporting data pipelines, Redis, and observability.",
+    "parsed_profile": null,
+    "profile_version": null,
+    "updated_at": "2026-01-24T09:15:00Z"
+  },
+  {
+    "_id": "res_005",
+    "candidate_id": "cand_005",
+    "raw_text": "Linh Nguyen - Software engineer (SDE II) with 4 years building SaaS platforms. Node, React, Python, MongoDB, and REST APIs. Built ML-powered features and worked with Qdrant search.",
+    "parsed_profile": null,
+    "profile_version": null,
+    "updated_at": "2026-01-24T09:20:00Z"
+  }
+]
