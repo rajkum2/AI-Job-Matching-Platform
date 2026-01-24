@@ -1,16 +1,18 @@
 from datetime import datetime
 from typing import List, Optional
 
-from app.db.mongo import get_db
+from app.db.mongo import get_db, serialize_doc, serialize_docs
 
 
 async def list_matches(status: Optional[str] = None) -> List[dict]:
     query = {"status": status} if status else {}
-    return await get_db().matches.find(query).to_list(None)
+    docs = await get_db().matches.find(query).to_list(None)
+    return serialize_docs(docs)
 
 
 async def get_match(match_id: str) -> Optional[dict]:
-    return await get_db().matches.find_one({"_id": match_id})
+    doc = await get_db().matches.find_one({"_id": match_id})
+    return serialize_doc(doc)
 
 
 async def upsert_match(match: dict) -> None:
@@ -19,7 +21,8 @@ async def upsert_match(match: dict) -> None:
 
 
 async def list_matches_by_candidate(candidate_id: str) -> List[dict]:
-    return await get_db().matches.find({"candidate_id": candidate_id}).to_list(None)
+    docs = await get_db().matches.find({"candidate_id": candidate_id}).to_list(None)
+    return serialize_docs(docs)
 
 
 async def update_match_status(match_id: str, status: str, reject_reason_codes: List[str], reviewer_notes: Optional[str]) -> dict:

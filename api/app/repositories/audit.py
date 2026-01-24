@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 
-from app.db.mongo import get_db
+from app.db.mongo import get_db, serialize_docs
 
 
 async def log_event(actor: str, action: str, entity_type: str, entity_id: str, before: Optional[dict], after: Optional[dict]) -> None:
@@ -18,4 +18,5 @@ async def log_event(actor: str, action: str, entity_type: str, entity_id: str, b
 
 
 async def list_events() -> List[dict]:
-    return await get_db().audit_events.find().sort("created_at", -1).to_list(50)
+    docs = await get_db().audit_events.find().sort("created_at", -1).to_list(50)
+    return serialize_docs(docs)

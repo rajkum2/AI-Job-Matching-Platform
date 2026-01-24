@@ -1,15 +1,17 @@
 from datetime import datetime
 from typing import List, Optional
 
-from app.db.mongo import get_db
+from app.db.mongo import get_db, serialize_doc, serialize_docs
 
 
 async def get_resume_by_candidate(candidate_id: str) -> Optional[dict]:
-    return await get_db().resumes.find_one({"candidate_id": candidate_id})
+    doc = await get_db().resumes.find_one({"candidate_id": candidate_id})
+    return serialize_doc(doc)
 
 
 async def list_resumes() -> List[dict]:
-    return await get_db().resumes.find().to_list(None)
+    docs = await get_db().resumes.find().to_list(None)
+    return serialize_docs(docs)
 
 
 async def upsert_resume(resume: dict) -> None:

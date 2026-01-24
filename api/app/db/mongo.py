@@ -1,6 +1,7 @@
 import logging
-from typing import Optional
+from typing import Any, Dict, List, Optional, Union
 
+from bson import ObjectId
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from app.core.config import settings
@@ -31,3 +32,25 @@ async def ensure_indexes() -> None:
     await db.mappings_title_aliases.create_index("alias", unique=True)
     await db.audit_events.create_index("created_at")
     logger.info("Mongo indexes ensured")
+
+
+def serialize_doc(doc: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """Convert MongoDB document to JSON-serializable dict by converting ObjectId to string."""
+    if doc is None:
+        return None
+    result = {}
+    for key, value in doc.items():
+        if isinstance(value, ObjectId):
+            result[key] = str(value)
+        elif isinstance(value, dict):
+            result[key] = serialize_doc(value)
+        elif isinstance(value, list):
+            result[key] = [serialize_doc(v) if isinstance(v, dict) else (str(v) if isinstance(v, ObjectId) else v) for v in value]
+        else:
+            result[key] = value
+    return result
+
+
+def serialize_docs(docs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Convert list of MongoDB documents to JSON-serializable dicts."""
+    return [serialize_doc(doc) for doc in docs]
